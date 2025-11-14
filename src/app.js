@@ -6,10 +6,14 @@ const app = express()
 
 app.use(express.json())
 
-app.post("/api/send-mail", async (req, res) => {
-  const { user, pass, to, subject, text, html, secrect } = req.body
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok" })
+})
 
-  if (secrect !== process.env.API_SECRET) {
+app.post("/api/send-mail", async (req, res) => {
+  const { user, pass, to, subject, text, html, secret } = req.body
+
+  if (secret !== process.env.API_SECRET) {
     return res.status(401).json({ error: "Unauthorized" })
   }
 
@@ -30,7 +34,7 @@ app.post("/api/send-mail", async (req, res) => {
 
   log(error ?? info, { boxenOptions: { borderColor: error ? "red" : "green" } })
 
-  res.json({ status: error ? "failed" : "success" })
+  res.json({ status: error ? "err" : "ok" })
 })
 
 export default app

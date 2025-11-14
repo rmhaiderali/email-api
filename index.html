@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Email API</title>
+  </head>
+  <body style="zoom:1.5">
+    <code>
+      <pre></pre>
+    </code>
+    <script>
+      const pre = document.querySelector("pre")
+      const data = {
+        user: "<user>",
+        pass: "<pass>",
+        to: "<to>",
+        subject: "<subject>",
+        text: "<text>",
+        html: "<html>",
+        secret: "<secret>",
+      }
+      pre.textContent += "GET " + location.origin + "/api/health\n\n"
+      pre.textContent += "POST " + location.origin + "/api/send-mail\n"
+      pre.textContent += JSON.stringify(data, null, 2)
+    </script>
+  </body>
+</html>
