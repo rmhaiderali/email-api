@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="dark light" />
     <title>Email API</title>
   </head>
-  <body style="zoom:1.5">
+  <body style="zoom: 1.5">
     <code>
       <pre></pre>
     </code>
@@ -20,6 +20,7 @@
         text: "<text>",
         html: "<html>",
         secret: "<secret>",
+        from_name: "<from_name>",
       }
       pre.textContent += "GET " + location.origin + "/api/health\n\n"
       pre.textContent += "POST " + location.origin + "/api/send-mail\n"
