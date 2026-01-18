@@ -11,7 +11,7 @@ app.get("/api/health", (req, res) => {
 })
 
 app.post("/api/send-mail", async (req, res) => {
-  const { user, pass, to, subject, text, html, secret } = req.body
+  const { user, pass, from_name, to, subject, text, html, secret } = req.body
 
   if (secret !== process.env.API_SECRET) {
     return res.status(401).json({ error: "Unauthorized" })
@@ -26,7 +26,9 @@ app.post("/api/send-mail", async (req, res) => {
     tls: { rejectUnauthorized: true },
   })
 
-  const options = { from: user, to, subject, text, html }
+  const from = from_name ? from_name + " <" + user + ">" : user
+
+  const options = { from, to, subject, text, html }
 
   const { error, info } = await new Promise((resolve) => {
     transporter.sendMail(options, (error, info) => resolve({ error, info }))
